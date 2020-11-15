@@ -33,6 +33,10 @@ public class User implements Serializable {
     private Integer status;
 
     private String name;
+    public User(String openid){
+        this.openid = openid;
+    }
+
 
 
 }
