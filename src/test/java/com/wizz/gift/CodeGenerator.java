@@ -28,7 +28,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         //这里projectPath换成绝对路径更好,这个地方就是输出目录,outPutDir... 绝对路径D:\\...
-        gc.setOutputDir("D:/newlife4" + "/src/main/java");
+        gc.setOutputDir("D:/gift" + "/src/main/java");
         
         gc.setAuthor("liqiqiorz");
         gc.setOpen(false); //生成后是否打开资源管理器，就是生成的代码是否自动打开
@@ -43,11 +43,11 @@ public class CodeGenerator {
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         //要加个时区的。。数据库配置嘛
-        dsc.setUrl("jdbc:mysql://localhost:3306/treehole?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT");
+        dsc.setUrl("jdbc:mysql://112.126.78.122:3306/gift?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT");
         
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setPassword("admin");
         //数据库类型
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
@@ -57,7 +57,7 @@ public class CodeGenerator {
         //三个包名(有人习惯两个，就是G
         pc.setParent("com.wizz");
         //A
-        pc.setModuleName("treehole"); //模块名
+        pc.setModuleName("gift"); //模块名
         //生成包的名字
         pc.setController("controller");
         pc.setEntity("entity");
@@ -68,7 +68,7 @@ public class CodeGenerator {
         // 5、策略配置，逆向工程，根据表构造代码
         StrategyConfig strategy = new StrategyConfig();
         //表名称如果有多张表请用：strategy.setInclude("edu_teacher","",""....,"")这样
-        strategy.setInclude("user","category","comment");
+        strategy.setInclude("user","category","comment","gift");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         //下划线策略，表中_换成实体类中的大写字母
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
