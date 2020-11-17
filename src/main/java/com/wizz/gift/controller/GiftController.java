@@ -16,13 +16,8 @@ import com.wizz.gift.service.GiftService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.listener.Topic;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import sun.net.www.content.image.gif;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,8 +74,46 @@ public class GiftController {
         return R.ok().message("添加成功!");
     }
 
+    @DeleteMapping("deleteGift/{id}")
+    public R deleteGift(@PathVariable int id,HttpServletRequest request) {
+        //        获取header里的token
+        String token = request.getHeader("token");
+//        获取token里的userID
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
+        }
+        Gift byId = giftService.getById(id);
+        if (byId.getUid().equals(userByUserId.getId())){
+            giftService.removeById(id);
+            return R.ok().message("删除成功");
+        }
+        return R.error().message("只能删除自己的礼物哦~");
+    }
+
+    @PostMapping("updateGift/{id}")
+    public R updateGift(@PathVariable int id,@RequestBody Gift gift,HttpServletRequest request){
+        //        获取header里的token
+        String token = request.getHeader("token");
+//        获取token里的userID
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
+        }
+        Gift byId = giftService.getById(id);
+        if (byId.getUid().equals(userByUserId.getId())) {
+         giftService.updateById(gift);
+        }
+        return R.ok();
+        }
+
+
+    }
 
 
 
-}
+
+
 

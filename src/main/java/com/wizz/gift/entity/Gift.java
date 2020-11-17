@@ -42,6 +42,8 @@ public class Gift implements Serializable {
 
     private Integer likeNum;
 
+    private Integer cid;
+
     private Integer dislikeNum;
 
 
