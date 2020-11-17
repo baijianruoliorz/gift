@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import sun.net.www.content.image.gif;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.POST;
 import java.util.List;
 
 /**
@@ -49,16 +50,35 @@ public class GiftController {
         return R.ok().data("giftList",giftList);
     }
     @PassToken
-    @ApiOperation(value = "普通分页")
-    @GetMapping("getAllPages/{current}/{limit}")
+    @ApiOperation(value = "根据分类来查询礼物")
+    @GetMapping("selectByCid/{cid}")
+    public R selectByCid(@PathVariable int cid){
+        List<Gift> cid1 = giftMapper.selectList(new QueryWrapper<Gift>()
+                .eq("cid", cid));
+        return R.ok().data("giftList",cid1);
+
+    }
+
+    @PassToken
+    @ApiOperation(value = "根据分类来分页")
+    @GetMapping("getAllPages/{current}/{limit}/{cid}")
     public R pageListGift(@PathVariable long current,
-                          @PathVariable long limit){
+                          @PathVariable long limit,
+                          @PathVariable long cid){
         Page<Gift> giftPages = new Page<>(current, limit);
-        giftService.page(giftPages,null);
+        giftService.page(giftPages,new QueryWrapper<Gift>().eq("cid",cid));
         long total = giftPages.getTotal();
         List<Gift> records = giftPages.getRecords();
         return R.ok().data("total",total).data("rows",records);
     }
+
+
+    @PostMapping("test/addGift")
+    public R addGifts(@RequestBody Gift gift){
+        giftService.save(gift);
+        return R.ok().message("添加成功!");
+    }
+
     @PostMapping("addGift")
     public R addGift(@RequestBody Gift gift, HttpServletRequest request){
 //        获取header里的token

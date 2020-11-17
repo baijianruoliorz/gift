@@ -7,7 +7,7 @@
         <result column="openid" property="openid" jdbcType="VARCHAR"/>
     </resultMap>
     <insert id="InsertUser"  useGeneratedKeys="true" keyProperty="userId">
-        INSERT INTO  usermessage(openid) VALUES (#{openid,jdbcType=VARCHAR})
+        INSERT INTO  user(openid) VALUES (#{openid,jdbcType=VARCHAR})
     </insert>
 
     <select id="findUserByUserId" resultType="com.wizz.gift.entity.User">
@@ -18,8 +18,8 @@
 
     <!--   此处如使用自动映射会出现BUG，我也不知道为啥查出来返回得userid是null-->
     <select id="findUserByOpenId" resultMap="UserByOpenId">
-        SELECT user_id,openid
-        FROM usermessage
+        SELECT id,openid
+        FROM user
         WHERE openid = #{openid,jdbcType=VARCHAR}
     </select>
 </mapper>

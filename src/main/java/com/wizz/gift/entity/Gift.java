@@ -32,7 +32,7 @@ public class Gift implements Serializable {
 
     private Integer status;
 
-    private String describe;
+    private String des;
 
     private String url;
 

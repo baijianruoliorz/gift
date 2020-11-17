@@ -32,7 +32,7 @@ public class SwaggerConfig {
 //                配置扫描路径 不然全部扫描
                 .select()
 //                指定扫描的包 new
-                .apis(RequestHandlerSelectors.basePackage("com.wizz.treehole.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.wizz.gift.controller"))
                 //not表示没有，即接口路径中包含admin和error就不进行显示了  先注释掉，因为如果包含admin,就不会显示，而acl正好包含admin
                 //.paths(Predicates.not(PathSelectors.regex("/admin/.*")))
 //                这个是过滤什么路径
@@ -54,8 +54,8 @@ public class SwaggerConfig {
 //        return new ApiInfo
 //         title:""
         return new ApiInfoBuilder()
-                .title("树洞有声的后台管理")
-                .description("本文档描述了树洞有声中心微服务接口定义")
+                .title("wizz-gift的后台管理")
+                .description("本文档描述了wizz-gift项目接口定义")
                 .version("1.0")
                 .termsOfServiceUrl("https:yangxiangrui.site")
 //                这就是作者信息 也可以写成 Contact,
