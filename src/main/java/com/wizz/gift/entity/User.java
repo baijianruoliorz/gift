@@ -1,6 +1,7 @@
 package com.wizz.gift.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -31,11 +32,15 @@ public class User implements Serializable {
     private String openid;
 
     private Integer status;
+    @TableField(exist = false)
+    private Integer userId=id;
 
     private String name;
     public User(String openid){
         this.openid = openid;
     }
+    @TableField(exist = false)
+    private String token;
 
 
 

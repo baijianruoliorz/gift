@@ -4,7 +4,7 @@ COPY *.jar /app.jar
 
 CMD ["-----server.port=8003"]
 #暴露你的端口
-EXPOSE 8003
+EXPOSE 9090
 
 VOLUME /tmp
 #执行jar命令,启动app.jar

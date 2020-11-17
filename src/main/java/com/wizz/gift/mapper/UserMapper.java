@@ -33,8 +33,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     /**
      * 新增用户,并返回数据库递增生成的userid
-     * @param user
+     * @param openid
      * @return
      */
-    int InsertUser(User user);
+    int InsertUser(String openid);
 }

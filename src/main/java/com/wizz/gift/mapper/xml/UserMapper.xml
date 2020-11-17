@@ -17,9 +17,9 @@
     </select>
 
     <!--   此处如使用自动映射会出现BUG，我也不知道为啥查出来返回得userid是null-->
-    <select id="findUserByOpenId" resultMap="UserByOpenId">
-        SELECT id,openid
+    <select id="findUserByOpenId" resultType="com.wizz.gift.entity.User">
+        SELECT *
         FROM user
-        WHERE openid = #{openid,jdbcType=VARCHAR}
+        WHERE openid = #{openid}
     </select>
 </mapper>

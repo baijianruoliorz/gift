@@ -289,6 +289,27 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <!-- 如果不添加此节点mybatis的映射配置文件都会被漏掉。 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+
+            <!-- 将项目中的resources目录下的配置文件拷贝到taget目录下 如果不添加此节点resources目录下的配置文件都会被漏掉。-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

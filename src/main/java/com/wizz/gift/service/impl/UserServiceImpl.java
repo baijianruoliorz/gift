@@ -58,16 +58,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             token = tokenMapper.findTokenByUserId(user.getId());
             log.info(user.toString());
             log.info("token为"+token+"\t");
+            log.info("sada");
+            token = tokenutil.TokenByUserId(user.getId());
+            user.setToken(token);
+
             tokenPO = new TokenPO(user, token);
             return new UniversalResponseBody<TokenPO>(ResponseResultEnum.USER_HAVE_EXIST.getCode(),ResponseResultEnum.USER_HAVE_EXIST.getMsg(),tokenPO);
         }else {
             //插入用户
             user = new User(wxResponseInfo.getOpenid());
-            userMapper.InsertUser(user);
+            userMapper.InsertUser(user.getOpenid());
             //根据userId生成token
             token = tokenutil.TokenByUserId(user.getId());
+            user.setToken(token);
             tokenPO = new TokenPO(user, token);
-            tokenMapper.insertToken(user.getId(), token);
+
         }
         return new UniversalResponseBody<TokenPO>(ResponseResultEnum.USER_LOGIN_SECCESS.getCode(),ResponseResultEnum.USER_LOGIN_SECCESS.getMsg(),tokenPO);
     }
