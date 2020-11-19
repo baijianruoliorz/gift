@@ -40,11 +40,13 @@ public class Gift implements Serializable {
 
     private Integer uid;
 
-    private Integer likeNum;
+    private Integer boylike;
+
+    private Integer girllike;
 
     private Integer cid;
 
-    private Integer dislikeNum;
+    private double process;
 
 
 }

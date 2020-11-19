@@ -47,10 +47,11 @@ public class GiftController {
     @GetMapping("/selectById")
     public R selectById(){
         List<Gift> giftList = giftMapper.selectList(new QueryWrapper<Gift>().orderByAsc("id"));
+
         return R.ok().data("giftList",giftList);
     }
     @PassToken
-    @ApiOperation(value = "根据分类来查询礼物")
+    @ApiOperation(value = "根据分类来查询礼物,不需要token")
     @GetMapping("selectByCid/{cid}")
     public R selectByCid(@PathVariable int cid){
         List<Gift> cid1 = giftMapper.selectList(new QueryWrapper<Gift>()
@@ -60,7 +61,7 @@ public class GiftController {
     }
 
     @PassToken
-    @ApiOperation(value = "根据分类来分页")
+    @ApiOperation(value = "根据分类来分页,不需要token")
     @GetMapping("getAllPages/{current}/{limit}/{cid}")
     public R pageListGift(@PathVariable long current,
                           @PathVariable long limit,
@@ -71,13 +72,21 @@ public class GiftController {
         List<Gift> records = giftPages.getRecords();
         return R.ok().data("total",total).data("rows",records);
     }
-
-
-    @PostMapping("test/addGift")
-    public R addGifts(@RequestBody Gift gift){
-        giftService.save(gift);
-        return R.ok().message("添加成功!");
+    @PassToken
+    @ApiOperation(value = "普通的分页,不需要token")
+    @GetMapping("getAllPages/{current}/{limit}")
+    public R pageListGifts(@PathVariable long current,
+                          @PathVariable long limit
+                         ){
+        Page<Gift> giftPages = new Page<>(current, limit);
+        giftService.page(giftPages,null);
+        long total = giftPages.getTotal();
+        List<Gift> records = giftPages.getRecords();
+        return R.ok().data("total",total).data("rows",records);
     }
+
+
+
 
     @PostMapping("addGift")
     public R addGift(@RequestBody Gift gift, HttpServletRequest request){
@@ -125,10 +134,46 @@ public class GiftController {
         Gift byId = giftService.getById(id);
         if (byId.getUid().equals(userByUserId.getId())) {
          giftService.updateById(gift);
+        }else {
+            return R.error().message("只能修改自己的礼物哦");
         }
         return R.ok();
         }
 
+    @PutMapping("boylike/{id}")
+    public R boylike(@PathVariable int id,HttpServletRequest request){
+        String token = request.getHeader("token");
+//        获取token里的userID
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
+        }
+        Gift byId = giftService.getById(id);
+        byId.setBoylike(byId.getBoylike()+1);
+        double processDemo;
+        processDemo=byId.getBoylike()*100/(byId.getBoylike()+byId.getGirllike());
+        byId.setProcess(processDemo);
+        giftService.updateById(byId);
+        return R.ok().message("男孩喜欢了这个礼物!现在的Process是:"+processDemo);
+    }
+    @PutMapping("girllike/{id}")
+    public R girllike(@PathVariable int id,HttpServletRequest request){
+        String token = request.getHeader("token");
+//        获取token里的userID
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
+        }
+        Gift byId = giftService.getById(id);
+        byId.setGirllike(byId.getGirllike()+1);
+        double processDemo;
+        processDemo=byId.getBoylike()*100/(byId.getBoylike()+byId.getGirllike());
+        byId.setProcess(processDemo);
+        giftService.updateById(byId);
+        return R.ok().message("女孩喜欢了这个礼物!现在的Process是:"+processDemo);
+    }
 
     }
 
