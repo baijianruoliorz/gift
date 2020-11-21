@@ -13,15 +13,12 @@ import com.wizz.gift.exceptionhandler.GuliException;
 import com.wizz.gift.mapper.GiftMapper;
 import com.wizz.gift.mapper.UserMapper;
 import com.wizz.gift.service.GiftService;
+import com.wizz.gift.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.listener.Topic;
 import org.springframework.web.bind.annotation.*;
-
-import sun.net.www.content.image.gif;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.POST;
+
 import java.util.List;
 
 /**
@@ -42,6 +39,9 @@ public class GiftController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
     @PassToken
     @GetMapping("/selectById")
@@ -151,11 +151,15 @@ public class GiftController {
         }
         Gift byId = giftService.getById(id);
         byId.setBoylike(byId.getBoylike()+1);
-        double processDemo;
-        processDemo=byId.getBoylike()*100/(byId.getBoylike()+byId.getGirllike());
-        byId.setProcess(processDemo);
+        int progressDemo = 0;
+        if (byId.getBoylike()+byId.getGirllike()!=0) {
+            progressDemo = byId.getBoylike() * 100 / (byId.getBoylike() + byId.getGirllike());
+            byId.setProgress(progressDemo);
+        }else {
+            byId.setProgress(0);
+        }
         giftService.updateById(byId);
-        return R.ok().message("男孩喜欢了这个礼物!现在的Process是:"+processDemo);
+        return R.ok().message("男孩喜欢了这个礼物!现在的Progress是:"+progressDemo);
     }
     @PutMapping("girllike/{id}")
     public R girllike(@PathVariable int id,HttpServletRequest request){
@@ -168,11 +172,39 @@ public class GiftController {
         }
         Gift byId = giftService.getById(id);
         byId.setGirllike(byId.getGirllike()+1);
-        double processDemo;
-        processDemo=byId.getBoylike()*100/(byId.getBoylike()+byId.getGirllike());
-        byId.setProcess(processDemo);
+        int progressDemo=0;
+        if (byId.getBoylike()+byId.getGirllike()!=0) {
+            progressDemo = byId.getBoylike() * 100 / (byId.getBoylike() + byId.getGirllike());
+            byId.setProgress(progressDemo);
+        }else {
+            byId.setProgress(0);
+        }
         giftService.updateById(byId);
-        return R.ok().message("女孩喜欢了这个礼物!现在的Process是:"+processDemo);
+        return R.ok().message("女孩喜欢了这个礼物!现在的Process是:"+progressDemo);
+    }
+
+//    收藏功能的实现
+    @GetMapping("/collectGift/{id}")
+    public R collectGift(@PathVariable int id,HttpServletRequest request){
+        String token = request.getHeader("token");
+//        获取token里的userID
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
+        }
+        String s = String.valueOf(id);
+        String pid = userByUserId.getPid();
+        if (pid==null){
+            pid="0";
+        }
+        if (pid.contains(s)){
+            return R.error().message("已经收藏过了,不能重复收藏");
+        }
+        pid=pid+","+s;
+        userByUserId.setPid(pid);
+        userService.updateById(userByUserId);
+        return R.ok().message("收藏成功!");
     }
 
     }

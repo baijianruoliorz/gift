@@ -42,6 +42,8 @@ public class User implements Serializable {
     @TableField(exist = false)
     private String token;
 
+    private String pid;
+
 
 
 }

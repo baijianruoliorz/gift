@@ -46,7 +46,7 @@ public class Gift implements Serializable {
 
     private Integer cid;
 
-    private double process;
+    private Integer progress;
 
 
 }
