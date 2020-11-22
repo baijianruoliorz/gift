@@ -16,10 +16,14 @@ import com.wizz.gift.service.GiftService;
 import com.wizz.gift.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 /**
@@ -44,13 +48,16 @@ public class GiftController {
     @Autowired
     private UserService userService;
 
+
     @PassToken
     @GetMapping("/selectById")
+    @Cacheable
     public R selectById(){
         List<Gift> giftList = giftMapper.selectList(new QueryWrapper<Gift>().orderByAsc("id"));
 
         return R.ok().data("giftList",giftList);
     }
+    @Cacheable
     @PassToken
     @ApiOperation(value = "根据分类来查询礼物,不需要token")
     @GetMapping("selectByCid/{cid}")
@@ -61,6 +68,7 @@ public class GiftController {
 
     }
 
+    @Cacheable
     @PassToken
     @ApiOperation(value = "根据分类来分页,不需要token")
     @GetMapping("getAllPages/{current}/{limit}/{cid}")
@@ -89,6 +97,7 @@ public class GiftController {
 
 
 
+    @CacheEvict
     @PostMapping("addGift")
     public R addGift(@RequestBody Gift gift, HttpServletRequest request){
 //        获取header里的token
@@ -104,6 +113,7 @@ public class GiftController {
         return R.ok().message("添加成功!");
     }
 
+    @CacheEvict
     @DeleteMapping("deleteGift/{id}")
     public R deleteGift(@PathVariable int id,HttpServletRequest request) {
         //        获取header里的token
@@ -208,12 +218,16 @@ public class GiftController {
         return R.ok().message("收藏成功!");
     }
     @GetMapping("/selectCollectGift")
-    public R selectCollection(HttpServletRequest request){
+    public R selectCollection(HttpServletRequest request)throws ConcurrentModificationException {
         String token = request.getHeader("token");
         Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
         User userByUserId = userMapper.findUserByUserId(userId);
         if (userByUserId==null){
             throw new GuliException(20000,"用户未登录或未保存至数据库!");
+        }
+//        不加这个会报并发错误
+        if (userByUserId.getGiftList()!=null){
+            userByUserId.setGiftList(null);
         }
         List<Gift> giftList = giftMapper.selectList(null);
         for (Gift gift : giftList) {
@@ -228,7 +242,7 @@ public class GiftController {
                     giftList1=new ArrayList<Gift>();
                 }
                 giftList1.add(gift);
-                userByUserId.setGiftList(giftList);
+                userByUserId.setGiftList(giftList1);
             }
         }
         return R.ok().data("user",userByUserId);
