@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -205,6 +206,32 @@ public class GiftController {
         userByUserId.setPid(pid);
         userService.updateById(userByUserId);
         return R.ok().message("收藏成功!");
+    }
+    @GetMapping("/selectCollectGift")
+    public R selectCollection(HttpServletRequest request){
+        String token = request.getHeader("token");
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId==null){
+            throw new GuliException(20000,"用户未登录或未保存至数据库!");
+        }
+        List<Gift> giftList = giftMapper.selectList(null);
+        for (Gift gift : giftList) {
+            String s = String.valueOf(gift.getId());
+            String pid = userByUserId.getPid();
+            if (pid==null){
+                pid="0";
+            }
+            if (pid.contains(s)){
+                List<Gift> giftList1 = userByUserId.getGiftList();
+                if (giftList1==null){
+                    giftList1=new ArrayList<Gift>();
+                }
+                giftList1.add(gift);
+                userByUserId.setGiftList(giftList);
+            }
+        }
+        return R.ok().data("user",userByUserId);
     }
 
     }
