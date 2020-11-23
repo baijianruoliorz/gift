@@ -111,7 +111,7 @@ public class Login2Controller {
      * 登录页面
      * @return
      */
-    @RequestMapping(value = {"/", "/index", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/indexInfo", "/index", ""}, method = RequestMethod.GET)
     public String index(){
         return "index";
     }
