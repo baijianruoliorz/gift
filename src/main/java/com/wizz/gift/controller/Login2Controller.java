@@ -1,4 +1,4 @@
-package com.wizz.gift.web;
+package com.wizz.gift.controller;
 
 import com.wizz.gift.entity.User;
 import com.wizz.gift.entity.model.LoginInfoDo;
@@ -7,6 +7,7 @@ import com.wizz.gift.entity.model.ReplyLoginMessage;
 import com.wizz.gift.entity.model.ReplyRegistMessage;
 import com.wizz.gift.entity.model.enums.LoginTypeEnum;
 import com.wizz.gift.service.UserService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ import java.util.Date;
 /**
  *登录和注册的控制器
  */
+@Api(description="websocket的登录,不需要实现")
 @Controller
-public class LoginController {
+public class Login2Controller {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService; //用户service类

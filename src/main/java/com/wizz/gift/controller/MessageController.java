@@ -1,4 +1,4 @@
-package com.wizz.gift.web;
+package com.wizz.gift.controller;
 
 
 import com.wizz.gift.entity.User;
@@ -6,6 +6,7 @@ import com.wizz.gift.entity.model.Message;
 import com.wizz.gift.entity.model.MessageRecordDo;
 import com.wizz.gift.entity.model.enums.MessageTypeEnum;
 import com.wizz.gift.service.UserService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import java.util.Date;
 /**
  * 发送消息控制器
  */
+@Api(description="websocket的发送消息,不需要实现")
 @Controller
 public class MessageController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());

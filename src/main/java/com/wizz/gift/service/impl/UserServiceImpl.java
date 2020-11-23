@@ -3,6 +3,10 @@ package com.wizz.gift.service.impl;
 import com.wizz.gift.Info.TokenPO;
 import com.wizz.gift.Info.WxResponseInfo;
 import com.wizz.gift.entity.User;
+import com.wizz.gift.entity.model.LoginInfoDo;
+import com.wizz.gift.entity.model.MessageRecordDo;
+import com.wizz.gift.mapper.LoginInfoMapper;
+import com.wizz.gift.mapper.MessageRecordMapper;
 import com.wizz.gift.mapper.TokenMapper;
 import com.wizz.gift.mapper.UserMapper;
 import com.wizz.gift.service.UserService;
@@ -12,6 +16,7 @@ import com.wizz.gift.utils.Tokenutil;
 import com.wizz.gift.utils.WeChatUtil;
 import com.wizz.gift.utils.response.UniversalResponseBody;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -37,6 +42,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserMapper userMapper;
     @Resource
     private TokenMapper tokenMapper;
+    @Autowired
+    private MessageRecordMapper messageRecordMapper;
+    @Autowired
+    private LoginInfoMapper loginInfoMapper;
 
     @Override
     public UniversalResponseBody<TokenPO> userWxLogin(String code){
@@ -75,6 +84,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         }
         return new UniversalResponseBody<TokenPO>(ResponseResultEnum.USER_LOGIN_SECCESS.getCode(),ResponseResultEnum.USER_LOGIN_SECCESS.getMsg(),tokenPO);
+    }
+
+
+    @Override
+    public User validateUserPassword(String name, String password) {
+        return userMapper.queryUser(name, password);
+    }
+
+    @Override
+    public boolean isExistUser(String name) {
+        User user = userMapper.queryUserByName(name);
+        return user != null;
+    }
+
+    @Override
+    public void insertUser(String name, String password) {
+        userMapper.insertUser(name, password);
+    }
+
+    @Override
+    public void addUserLoginInfo(LoginInfoDo loginInfoDo) {
+        loginInfoMapper.addLoginInfo(loginInfoDo);
+    }
+
+    @Override
+    public void addUserMessageRecord(MessageRecordDo messageRecordDo) {
+        messageRecordMapper.addMessageRecord(messageRecordDo);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userMapper.getUserByName(name);
     }
 
 }
