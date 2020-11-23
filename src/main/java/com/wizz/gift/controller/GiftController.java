@@ -14,6 +14,7 @@ import com.wizz.gift.mapper.GiftMapper;
 import com.wizz.gift.mapper.UserMapper;
 import com.wizz.gift.service.GiftService;
 import com.wizz.gift.service.UserService;
+import com.wizz.gift.utils.RandomInitial;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -57,6 +58,21 @@ public class GiftController {
 
         return R.ok().data("giftList",giftList);
     }
+
+    @PassToken
+    @GetMapping("/getRandomGifts")
+    public R getRandomGifts(){
+        List<Gift> giftList=new ArrayList<>();
+        int[] array = RandomInitial.getArray();
+        for (int i : array) {
+            Gift byId = giftService.getById(i);
+            giftList.add(byId);
+        }
+        return R.ok().data("randomGifts",giftList);
+
+    }
+
+
     @Cacheable
     @PassToken
     @ApiOperation(value = "根据分类来查询礼物,不需要token")
