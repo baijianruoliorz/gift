@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wizz.gift.mapper.MessageRecordMapper">
+
+
+    <insert id="addMessageRecord" parameterType="com.wizz.gift.entity.model.MessageRecordDo">
+        INSERT INTO message_record(user_id, user_name, message_type, content, create_time)
+        VALUES (#{userId}, #{userName}, #{messageType}, #{content}, #{createTime})
+    </insert>
+</mapper>
