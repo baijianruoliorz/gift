@@ -1,5 +1,5 @@
-<!--日志输出,不建议上线使用,日志容易积攒垃圾占用空间,日志会输出到项目的logs文件夹下,分为app.log以及error.log-->
 <?xml version="1.0" encoding="UTF-8"?>
+<!--日志输出,不建议上线使用,日志容易积攒垃圾占用空间,日志会输出到项目的logs文件夹下,分为app.log以及error.log-->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
     <property name="log.path" value="log/logback.log"/>
