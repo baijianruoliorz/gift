@@ -60,10 +60,10 @@ public class GiftController {
     }
 
     @PassToken
-    @GetMapping("/getRandomGifts")
-    public R getRandomGifts(){
+    @GetMapping("/getRandomGifts/{number}")
+    public R getRandomGifts(@PathVariable int number){
         List<Gift> giftList=new ArrayList<>();
-        int[] array = RandomInitial.getArray();
+        int[] array = RandomInitial.getArray(number);
         for (int i : array) {
             Gift byId = giftService.getById(i);
             giftList.add(byId);

@@ -64,3 +64,62 @@
 2020-28-23 22:28:26.369 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - <==      Total: 1
 2020-28-23 22:28:26.371 [http-nio-9090-exec-1] INFO  c.w.g.a.LogAspect - Result : R(success=true, code=20000, message=成功, data={randomGifts=[Gift(id=5, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720200629225320.jpg, vodurl=string, uid=0, boylike=1, girllike=2, cid=0, progress=null), Gift(id=3, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/QAQ.jpg, vodurl=string, uid=0, boylike=3, girllike=3, cid=0, progress=null), Gift(id=4, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720200524202419.jpg, vodurl=string, uid=0, boylike=1, girllike=1, cid=0, progress=null), Gift(id=7, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720201004152315.jpg, vodurl=string, uid=0, boylike=1, girllike=2, cid=0, progress=null), Gift(id=11, title=string, status=0, des=string, url=string, vodurl=string, uid=0, boylike=11, girllike=23, cid=0, progress=null)]}, i=3)
 2020-28-23 22:28:55.802 [MessageBroker-1] INFO  o.s.w.s.c.WebSocketMessageBrokerStats - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2020-33-23 22:33:08.642 [restartedMain] INFO  c.w.g.GiftApplication - Starting GiftApplication on DESKTOP-8R9JVOE with PID 9104 (D:\gift\target\classes started by liqiqiorz in D:\gift)
+2020-33-23 22:33:08.647 [restartedMain] DEBUG c.w.g.GiftApplication - Running with Spring Boot v2.3.4.RELEASE, Spring v5.2.9.RELEASE
+2020-33-23 22:33:08.647 [restartedMain] INFO  c.w.g.GiftApplication - No active profile set, falling back to default profiles: default
+2020-33-23 22:33:08.747 [restartedMain] INFO  o.s.b.d.r.ChangeableUrls - The Class-Path manifest attribute in D:\maven\repository\com\sun\xml\bind\jaxb-core\2.3.0.1\jaxb-core-2.3.0.1.jar referenced one or more files that do not exist: file:/D:/maven/repository/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-api.jar
+2020-33-23 22:33:08.747 [restartedMain] INFO  o.s.b.d.r.ChangeableUrls - The Class-Path manifest attribute in D:\maven\repository\com\sun\xml\bind\jaxb-impl\2.3.2\jaxb-impl-2.3.2.jar referenced one or more files that do not exist: file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/jaxb-runtime-2.3.2.jar,file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/txw2-2.3.2.jar,file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/istack-commons-runtime-3.0.8.jar,file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/stax-ex-1.8.1.jar,file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/FastInfoset-1.2.16.jar,file:/D:/maven/repository/com/sun/xml/bind/jaxb-impl/2.3.2/jakarta.activation-api-1.2.1.jar
+2020-33-23 22:33:08.747 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-33-23 22:33:08.747 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-33-23 22:33:10.218 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-33-23 22:33:10.223 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-33-23 22:33:10.287 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32ms. Found 0 Redis repository interfaces.
+2020-33-23 22:33:10.566 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - No MyBatis mapper was found in '[com.yxr.gift.mapper]' package. Please check your configuration.
+2020-33-23 22:33:10.568 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'categoryMapper' and 'com.wizz.gift.mapper.CategoryMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'commentMapper' and 'com.wizz.gift.mapper.CommentMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'giftMapper' and 'com.wizz.gift.mapper.GiftMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'loginInfoMapper' and 'com.wizz.gift.mapper.LoginInfoMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'messageRecordMapper' and 'com.wizz.gift.mapper.MessageRecordMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'productMapper' and 'com.wizz.gift.mapper.ProductMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'tokenMapper' and 'com.wizz.gift.mapper.TokenMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.569 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'userMapper' and 'com.wizz.gift.mapper.UserMapper' mapperInterface. Bean already defined with the same name!
+2020-33-23 22:33:10.570 [restartedMain] WARN  o.m.s.m.ClassPathMapperScanner - No MyBatis mapper was found in '[com/wizz/gift/mapper]' package. Please check your configuration.
+2020-33-23 22:33:10.981 [restartedMain] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.wizz.gift.config.RedisConfig$$EnhancerBySpringCGLIB$$e0ab5e77] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-33-23 22:33:11.590 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2020-33-23 22:33:11.600 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2020-33-23 22:33:11.600 [restartedMain] INFO  o.a.c.c.StandardService - Starting service [Tomcat]
+2020-33-23 22:33:11.601 [restartedMain] INFO  o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-33-23 22:33:11.725 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2020-33-23 22:33:11.726 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2979 ms
+2020-33-23 22:33:12.215 [restartedMain] INFO  c.a.d.p.DruidDataSource - {dataSource-1} inited
+2020-33-23 22:33:14.552 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-33-23 22:33:14.591 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-33-23 22:33:15.900 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-33-23 22:33:15.946 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskScheduler - Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-33-23 22:33:16.000 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'brokerChannelExecutor'
+2020-33-23 22:33:16.284 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-33-23 22:33:17.187 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9090"]
+2020-33-23 22:33:17.369 [restartedMain] INFO  o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+2020-33-23 22:33:17.370 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+2020-33-23 22:33:17.404 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2020-33-23 22:33:17.472 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+2020-33-23 22:33:17.753 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: indexUsingGET_1
+2020-33-23 22:33:17.755 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: indexUsingGET_2
+2020-33-23 22:33:17.853 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Starting...
+2020-33-23 22:33:17.854 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-33-23 22:33:17.854 [restartedMain] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Started.
+2020-33-23 22:33:17.873 [restartedMain] INFO  c.w.g.GiftApplication - Started GiftApplication in 9.957 seconds (JVM running for 12.35)
+2020-33-23 22:33:21.325 [http-nio-9090-exec-1] INFO  o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-33-23 22:33:21.325 [http-nio-9090-exec-1] INFO  o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-33-23 22:33:21.337 [http-nio-9090-exec-1] INFO  o.s.w.s.DispatcherServlet - Completed initialization in 12 ms
+2020-33-23 22:33:40.847 [http-nio-9090-exec-1] INFO  c.w.g.a.LogAspect - Request : {url='http://localhost:9090/gift/gift/getRandomGifts/3', ip='0:0:0:0:0:0:0:1', classMethod='com.wizz.gift.controller.GiftController.getRandomGifts', args=[3]}
+2020-33-23 22:33:40.894 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==>  Preparing: SELECT id,title,status,des,url,vodurl,uid,boylike,girllike,cid,progress FROM gift WHERE id=? 
+2020-33-23 22:33:40.951 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==> Parameters: 9(Integer)
+2020-33-23 22:33:40.995 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - <==      Total: 1
+2020-33-23 22:33:40.999 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==>  Preparing: SELECT id,title,status,des,url,vodurl,uid,boylike,girllike,cid,progress FROM gift WHERE id=? 
+2020-33-23 22:33:41.006 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==> Parameters: 10(Integer)
+2020-33-23 22:33:41.030 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - <==      Total: 1
+2020-33-23 22:33:41.032 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==>  Preparing: SELECT id,title,status,des,url,vodurl,uid,boylike,girllike,cid,progress FROM gift WHERE id=? 
+2020-33-23 22:33:41.039 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - ==> Parameters: 5(Integer)
+2020-33-23 22:33:41.064 [http-nio-9090-exec-1] DEBUG c.w.g.m.G.selectById - <==      Total: 1
+2020-33-23 22:33:41.066 [http-nio-9090-exec-1] INFO  c.w.g.a.LogAspect - Result : R(success=true, code=20000, message=成功, data={randomGifts=[Gift(id=9, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720201004152812.jpg, vodurl=string, uid=0, boylike=2, girllike=3, cid=1, progress=null), Gift(id=10, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720201004153021.jpg, vodurl=string, uid=0, boylike=1, girllike=3, cid=1, progress=null), Gift(id=5, title=string, status=0, des=string, url=https://edu-1014.oss-cn-beijing.aliyuncs.com/TIM%E5%9B%BE%E7%89%8720200629225320.jpg, vodurl=string, uid=0, boylike=1, girllike=2, cid=0, progress=null)]}, i=3)

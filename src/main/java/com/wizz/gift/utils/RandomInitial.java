@@ -7,10 +7,10 @@ import java.util.Random;
  * @date 2020/11/23 -22:23
  */
 public class RandomInitial {
-    public static int[] getArray(){
+    public static int[] getArray(int a){
         Random r = new Random();
         //使用数组接收随机数字
-        int[] arr = new int[5];
+        int[] arr = new int[a];
         for (int i = 0; i <arr.length ; i++) {
             //随机生成1-11的数字
             arr[i] = r.nextInt(11)+1;
