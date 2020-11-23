@@ -47,7 +47,11 @@
             <version>3.0.5</version>
         </dependency>
 
-
+        <!-- SpringBoot WebSocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
 
 
         <!--         模板引擎-->
