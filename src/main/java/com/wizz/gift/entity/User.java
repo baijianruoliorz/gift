@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import io.swagger.annotations.ApiModel;
@@ -28,6 +29,8 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Date loginDate;
+    private Date logoutDate;
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -48,6 +51,9 @@ public class User implements Serializable {
 
     @TableField(exist = false)
     private List<Gift> giftList;
+
+    @TableField(exist = false)
+    private String password;
 
 
 

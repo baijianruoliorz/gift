@@ -22,4 +22,27 @@
         FROM user
         WHERE openid = #{openid}
     </select>
+
+    <!--通过用户名和密码查询-->
+    <select id="queryUser" resultType="com.wizz.gift.entity.User">
+        SELECT id, name, password FROM user
+        WHERE name = #{name} AND password = #{password}
+    </select>
+    <!--通过用户名查询-->
+    <select id="queryUserByName" resultType="com.wizz.gift.entity.User">
+        SELECT id, name, password FROM user
+        WHERE name = #{name}
+    </select>
+    <select id="getUserByName"  resultType="com.wizz.gift.entity.User">
+        SELECT * FROM user
+        where name = #{name}
+        limit 1
+    </select>
+
+    <!--插入用户-->
+    <insert id="insertUser" >
+        INSERT INTO user(name, password) VALUES(#{name}, #{password})
+    </insert>
+
+
 </mapper>
