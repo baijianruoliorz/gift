@@ -11,10 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * 微信登录获取数据工具包
- * @author 郭树耸
- * @version 1.0
- * @date 2020/2/2 13:17
+ * @author liqiqi_tql
+ * @date 2020/11/29 -11:20
  */
 @Component
 @Slf4j

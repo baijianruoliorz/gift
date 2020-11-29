@@ -5,10 +5,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.stereotype.Component;
 
 /**
- * token工具类
- * @author 郭树耸
- * @version 1.0
- * @date 2020/2/3 15:22
+ * @author liqiqi_tql
+ * @date 2020/11/29 -11:17
  */
 @Component
 public class Tokenutil {
