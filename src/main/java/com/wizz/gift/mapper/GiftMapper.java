@@ -17,4 +17,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface GiftMapper extends BaseMapper<Gift> {
 
+    int getTotalNum();
 }

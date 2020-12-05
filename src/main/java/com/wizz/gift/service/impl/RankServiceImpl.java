@@ -22,7 +22,7 @@ public class RankServiceImpl extends ServiceImpl<GiftMapper, Gift> implements Ra
     RedisUtil redisUtil;
     @Override
     public void initRank(){
-        List<Gift> gifts=this.list(new QueryWrapper<Gift>());
+        List<Gift> gifts=this.list(new QueryWrapper<Gift>().isNotNull("status"));
         for(Gift gift : gifts){
             String Boykey="boy_rank";
             String GirlKey="girl_rank";

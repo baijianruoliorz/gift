@@ -59,13 +59,13 @@ public class GiftController {
 
         return R.ok().data("giftList", giftList);
     }
-
     @PassToken
     // @Cacheable(key = "'list'",value = "lists")
     @GetMapping("/getRandomGifts/{number}")
     public R getRandomGifts(@PathVariable int number) {
         List<Gift> giftList = new ArrayList<>();
-        int[] array = RandomInitial.getArray(number);
+        int totalNum = giftMapper.getTotalNum();
+        int[] array = RandomInitial.getArray(number,totalNum);
         for (int i : array) {
             Gift byId = giftService.getById(i);
             giftList.add(byId);
@@ -116,18 +116,13 @@ public class GiftController {
 
     //@CacheEvict(allEntries=true)
     @PostMapping("addGift")
+    @PassToken
     public R addGift(@RequestBody Gift gift, HttpServletRequest request) {
-//        获取header里的token
-        String token = request.getHeader("token");
-//        获取token里的userID
-        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
-        User userByUserId = userMapper.findUserByUserId(userId);
-        if (userByUserId == null) {
-            throw new GuliException(20000, "用户未登录或者未保存至数据库!");
-        }
-        gift.setUid(userByUserId.getId());
+        gift.setUid(0);
+        int i=giftMapper.getTotalNum();
+        gift.setId(i+1);
         giftService.save(gift);
-        return R.ok().message("添加成功!");
+        return R.ok().data("data",i).message("添加成功!");
     }
 
     //@CacheEvict(allEntries=true)

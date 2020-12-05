@@ -13,7 +13,7 @@ public class RankSyncTask {
     @Autowired
     RankService rankService;
 
-    @Scheduled(cron = "0/5 * * * * *")//每分钟同步
+    @Scheduled(cron = "0 */5 * * * ?")//每分钟同步
     public void task(){
         try{
             rankService.initRank();
