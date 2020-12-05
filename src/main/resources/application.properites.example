@@ -1,0 +1,94 @@
+spring.application.name=gift
+# 服务端口
+server.port=
+# 服务名 ,尽量不加下划线，和模块名可以不一样的
+logging.level.com.wizz.gift=
+
+# mysql数据库连接
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://yourhost/gift?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+spring.datasource.username=yourUsername
+spring.datasource.password=yourPassword
+#spring.datasource.password=       #这一栏你用你的密码,username不对自己改下
+spring.datasource.type= com.alibaba.druid.pool.DruidDataSource
+#返回json的全局时间格式
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone=GMT+8
+# 设置日志级别
+#logging.level.root=INFO
+#mybatis日志
+#mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+#配置mapper.xml路径 classpath在src目录下的路径 如果在target中就是classes中的路径,记得扫描mapper路径!!!!
+mybatis-plus.mapper-locations=classpath:com/wizz/gift/mapper/xml/*.xml
+
+#微信小程序
+wx.appid=yourAppid
+wx.secret=yourSecret
+
+wx.templateId=
+wx.url=https://api.weixin.qq.com/sns/jscode2session?appid=${wx.appid}&secret=${wx.secret}&grant_type=authorization_code&js_code=
+
+#阿里云 OSS
+#不同的服务器，地址不同,这里是地狱节点
+aliyun.oss.file.endpoint=oss-cn-beijing.aliyuncs.com
+aliyun.oss.file.keyid=yourKeyid
+aliyun.oss.file.keysecret=yourKeySecret
+#bucket可以在控制台创建，也可以使用java代码创建
+aliyun.oss.file.bucketname=yourBucketname
+
+
+#mybatis.mapperLocations=classpath:com/yxr/tmall/mapper/xml/*.xml
+
+# BANNER
+
+spring.banner.location=classpath*:banner.txt
+#spring.banner.image.location=classpath:banner.jpg
+#spring.banner.image.location=classpath:classpath:banner.txt # Banner text resource location.
+#spring.banner.image.location=classpath:banner.gif # Banner image file location (jpg or png can also be used).
+#spring.banner.image.width=76
+#spring.banner.image.height=58
+#spring.banner.image.margin=2
+#spring.banner.image.invert=false
+#Whether images should be inverted for dark terminal themes.
+
+#Redis数据库索引（默认为0）
+spring.redis.database=0
+
+#Redis服务器地址
+spring.redis.host=yourRedisHost
+#Redis服务器连接端口
+spring.redis.port=yourRedisHost
+#Redis服务器连接密码（默认为空）
+spring.redis.password=
+#连接池最大连接数（使用负值表示没有限制）
+spring.redis.pool.max-active=10
+#连接池最大阻塞等待时间（使用负值表示没有限制）
+spring.redis.pool.max-wait=-1
+#连接池中的最大空闲连接
+spring.redis.pool.max-idle=8
+#连接池中的最小空闲连接
+spring.redis.pool.min-idle=0
+#连接超时时间（毫秒）
+spring.redis.timeout=0
+
+
+#阿里云 vod
+#不同的服务器，地址不同
+aliyun.vod.file.keyid=yourKeyId
+aliyun.vod.file.keysecret=yourKeySecret
+
+# 最大上传单个文件大小：默认1M
+spring.servlet.multipart.max-file-size=1024MB
+# 最大置总上传的数据大小 ：默认10M
+spring.servlet.multipart.max-request-size=1024MB
+
+
+# 邮箱服务器地址
+spring.mail.host=smtp.qq.com
+#其中第一个host（邮件服务器地址）参数，不同的邮箱有所不同，上面是QQ邮箱的host。163邮箱为smtp.163.com、126邮箱为smtp.126.com。
+spring.mail.username=1099462011@qq.com
+spring.mail.password=yourPassword
+spring.mail.default-encoding=UTF-8
+
+
