@@ -36,6 +36,7 @@ public class RankServiceImpl extends ServiceImpl<GiftMapper, Gift> implements Ra
         if(!isExist){
             redisUtil.hset("rank_gift_"+gift.getId(),"gift:id",gift.getId());
             redisUtil.hset("rank_gift_"+gift.getId(),"gift:title",gift.getTitle());
+            redisUtil.hset("rank_gift_"+gift.getId(),"gift:url",gift.getUrl());
         }
     }
     @Override
