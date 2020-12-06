@@ -27,6 +27,7 @@ public class RankController {
             map.put("star",typedTuple.getScore());
             map.put("id",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:id"));
             map.put("title",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:title"));
+            map.put("url",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:url"));
             rankList.add(map);
         }
         return R.ok().data("boyRank",rankList);
@@ -42,6 +43,7 @@ public class RankController {
             map.put("star",typedTuple.getScore());
             map.put("id",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:id"));
             map.put("title",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:title"));
+            map.put("url",redisUtil.hget("rank_gift_"+typedTuple.getValue(),"gift:url"));
             rankList.add(map);
         }
         return R.ok().data("girlRank",rankList);
