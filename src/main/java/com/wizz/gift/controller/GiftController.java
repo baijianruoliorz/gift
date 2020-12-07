@@ -231,6 +231,45 @@ public class GiftController {
         return R.ok().message("收藏成功!");
     }
 
+    @GetMapping("isCollected/{giftID}")
+    public R isCollected(@PathVariable String giftID, HttpServletRequest request){
+        String token = request.getHeader("token");
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或未保存至数据库!");
+        }
+        String pid = userByUserId.getPid();
+        if (pid.contains(giftID)){
+            return R.ok().data("Collected",1);
+        }
+        else {
+            return R.ok().data("NOTCollected",2);
+        }
+    }
+    @ApiOperation("当isCollected返回1时才能执行这个方法")
+    @GetMapping("deleteCollection/{giftID}")
+    public R deleteCollection(@PathVariable String giftID,HttpServletRequest request){
+        String token = request.getHeader("token");
+        Integer userId = Integer.valueOf(JWT.decode(token).getAudience().get(0));
+        User userByUserId = userMapper.findUserByUserId(userId);
+        if (userByUserId == null) {
+            throw new GuliException(20000, "用户未登录或未保存至数据库!");
+        }
+        String pid = userByUserId.getPid();
+        pid=pid.replace(giftID,"");
+        userByUserId.setPid(pid);
+        boolean save = userService.updateById(userByUserId);
+        if (save){
+            return R.ok().data("NOTCollected",2).message("delete this gift success");
+        }else {
+            return R.ok().message("canceled delete this gift");
+        }
+
+
+    }
+
+
     @GetMapping("/selectCollectGift")
     public R selectCollection(HttpServletRequest request) throws ConcurrentModificationException {
         String token = request.getHeader("token");
