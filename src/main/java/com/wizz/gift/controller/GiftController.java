@@ -59,6 +59,13 @@ public class GiftController {
 
         return R.ok().data("giftList", giftList);
     }
+
+    @PassToken
+    @GetMapping("/getGiftById/{id}")
+    public R getGiftById(@PathVariable String id){
+        Gift gift = giftMapper.selectById(id);
+        return R.ok().message("this gift is:").data("gift",gift);
+    }
     @PassToken
     // @Cacheable(key = "'list'",value = "lists")
     @GetMapping("/getRandomGifts/{number}")
